@@ -36,19 +36,19 @@ The second phase of the project is by sending the shortened URL by GET JSON, her
     note " If you want you can change default port from src\main\resources\application.properties "
 
 ### Post JSON On Postman 
-<img src="./screenshots/POST_JSON.PNG" width="900" height="500">
+<img src="./screenshots/POST_JSON.png" width="900" height="500">
 
 ### GET ON Postman
-<img src="./screenshots/GET.PNG" width="900" height="500">
+<img src="./screenshots/GET.png" width="900" height="500">
 
 ### Home Page
 <img src="./screenshots/home.PNG" width="900" height="500">
 
 ### On Click Shorten
-<img src="./screenshots/Click_Shorten.PNG" width="900" height="500">
+<img src="./screenshots/Click_Shorten.png" width="900" height="500">
 
 ### On Click Load
-<img src="./screenshots/Click_Load.PNG" width="900" height="500">
+<img src="./screenshots/Click_Load.png" width="900" height="500">
 
 
 
