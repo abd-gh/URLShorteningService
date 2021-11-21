@@ -1,0 +1,10 @@
+com\stackfortech\urlShorteningService\repository\UrlRepository.class
+com\stackfortech\urlShorteningService\domin\Error.class
+com\stackfortech\urlShorteningService\Controller\UrlShorteningController.class
+com\stackfortech\urlShorteningService\model\Url.class
+com\stackfortech\urlShorteningService\model\UrlProcessing.class
+com\stackfortech\urlShorteningService\model\UrlResponse.class
+com\stackfortech\urlShorteningService\service\UrlService.class
+com\stackfortech\urlShorteningService\service\UrlServiceImpl.class
+com\stackfortech\urlShorteningService\domin\ErrorResponse.class
+com\stackfortech\urlShorteningService\UrlShorteningServiceApplication.class

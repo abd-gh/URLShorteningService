@@ -5,6 +5,7 @@ import java.time.LocalDateTime;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.xml.bind.ValidationException;
 
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,9 +32,9 @@ public class UrlShorteningController
     private UrlService urlService;
     
     @PostMapping("/shortening")
-    public ResponseEntity<?> shorteningUrl(@RequestBody UrlProcessing url ){
+    public ResponseEntity<?> shorteningUrl(@RequestBody UrlProcessing url ) throws ValidationException{
 		Url shortenedUrl = urlService.generateShortUrl(url);
-		ResponseEntity responseEntity = null;
+		ResponseEntity<?> responseEntity = null;
 		if (shortenedUrl != null) {
 			UrlResponse urlResp = new UrlResponse();
 			urlResp.setOriginalUrl(shortenedUrl.getOriginalUrl());
@@ -52,32 +53,24 @@ public class UrlShorteningController
 
 	@GetMapping("load/{shortenedUrl}")
 	@ResponseBody
-	public ResponseEntity<?> redirectToOriginalUrl(@PathVariable String shortenedUrl, HttpServletResponse response,
-			HttpServletRequest request) throws IOException {
-		ResponseEntity responseEntity = null;
+	public ResponseEntity<?> redirectToOriginalUrl(@PathVariable String shortenedUrl, HttpServletResponse response, HttpServletRequest request) throws IOException {
+		ResponseEntity<?> responseEntity = null;
 		Url urlLoad = urlService.getEncodedUrl(shortenedUrl);
-		
 		if (StringUtils.isEmpty(shortenedUrl)) {
 			Error error = new Error();
 			error.withCode(443).withMessage("Invalid Url");
 			return responseEntity = new ErrorResponse().generateErrorResponse(error, HttpStatus.BAD_REQUEST);
-		}
-		else if(urlLoad == null)
-        {
+		} if(urlLoad == null){
             Error error = new Error();
 			error.withCode(443).withMessage("Url does not exist ");
 			return responseEntity = new ErrorResponse().generateErrorResponse(error, HttpStatus.BAD_REQUEST);
-        }
-
-		else if (urlLoad.getExpirationDate().isBefore(LocalDateTime.now())) {
+        }if (urlLoad.getExpirationDate().isBefore(LocalDateTime.now())) {
 			Error error = new Error();
 			error.withCode(408).withMessage("Request Timeout response Url has expired.");
 			return responseEntity = new ErrorResponse().generateErrorResponse(error, HttpStatus.GATEWAY_TIMEOUT);
 		}
-		else {
 		response.sendRedirect(urlLoad.getOriginalUrl());
-		return null;
-		}
+		return responseEntity ;
 	}
    
 }

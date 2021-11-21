@@ -12,7 +12,7 @@
 	<artifactId>urlShorteningService</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>urlShorteningService</name>
-	<description>Application to generate a unique and short url</description>
+	<description>Application to generate a shorten url</description>
 
 	<properties>
 		<java.version>1.8</java.version>
